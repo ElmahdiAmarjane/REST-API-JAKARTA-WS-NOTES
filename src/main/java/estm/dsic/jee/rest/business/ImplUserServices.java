@@ -19,4 +19,9 @@ public class ImplUserServices implements IUserServices, Serializable {
     public User auth(User user) {
         return userDao.auth(user);
     }
+
+    @Override
+    public boolean create(User user) {
+        return userDao.create(user);
+    }
 }

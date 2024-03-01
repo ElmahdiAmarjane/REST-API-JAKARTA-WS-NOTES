@@ -29,8 +29,19 @@ public class UserDao implements Repository<User,String> {
 
     @Override
     public boolean create(User entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+
+        String query = "INSERT INTO users (email , password ,isAdmin ) VALUES (?,?,?)";
+          try(Connection connection = dataSource.getConnection()) {
+               PreparedStatement preparedStatement= connection.prepareStatement(query);
+               preparedStatement.setString(1, entity.getEmail());
+               preparedStatement.setString(2, entity.getPassword());
+               preparedStatement.setBoolean(3, false);
+                preparedStatement.executeUpdate();
+                  return true;
+          } catch (Exception e) {
+            // TODO: handle exception
+          }
+         return false;
     }
   
     @Override
