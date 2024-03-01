@@ -1,4 +1,4 @@
-package estm.dsic.jee.rest;
+package estm.dsic.jee.rest.controllers;
 
 
 import javax.print.attribute.standard.MediaName;
