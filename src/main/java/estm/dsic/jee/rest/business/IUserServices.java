@@ -8,4 +8,5 @@ public interface IUserServices {
     boolean create(User user);
     boolean validateUser(boolean validate,User user);
     boolean deleteUser(User user);
+    boolean updateUser(User user, String email);
 }

@@ -34,4 +34,9 @@ public class ImplUserServices implements IUserServices, Serializable {
     public boolean deleteUser(User user) {
           return userDao.delete(user.getEmail());
     }
+
+    @Override
+    public boolean updateUser(User user, String email) {
+           return userDao.update(user, email);
+    }
 }

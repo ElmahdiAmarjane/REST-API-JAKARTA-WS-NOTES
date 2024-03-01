@@ -89,9 +89,20 @@ public class UserDao implements Repository<User,String> {
     }
 
     @Override
-    public User update(User entity, String index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public boolean update(User entity, String index) {
+      String query = "UPDATE USERS SET  email = ? , password=? WHERE email=?";
+       
+         try (Connection connection = dataSource.getConnection()) {
+           PreparedStatement preparedStatement=  connection.prepareStatement(query);
+          preparedStatement.setString(1, entity.getEmail());
+          preparedStatement.setString(2, entity.getPassword());
+          preparedStatement.setString(3, index);
+          preparedStatement.executeUpdate();
+          return true;
+          } catch (Exception e) {
+           System.out.println(e);
+         }
+         return false ; 
     }
 
     

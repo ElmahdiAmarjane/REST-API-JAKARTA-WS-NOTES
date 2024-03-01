@@ -8,6 +8,6 @@ public interface Repository<T,I>{
        User auth(T entity);
        User find(I index);
        boolean delete(I index);
-       User update(T entity , I index);
+       boolean update(T entity , I index);
       // boolean validateUser(I index);
 }

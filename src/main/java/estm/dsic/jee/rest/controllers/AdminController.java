@@ -1,6 +1,7 @@
 package estm.dsic.jee.rest.controllers;
 
 import estm.dsic.jee.rest.business.IUserServices;
+import estm.dsic.jee.rest.models.UpdateRequest;
 import estm.dsic.jee.rest.models.User;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -23,12 +24,20 @@ public class AdminController {
         // Call your service method with the received values
         return userServices.validateUser(true, user);
     }
-    
+
     @Path("/deleteUser")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean deleteUser(User user){
         return userServices.deleteUser(user);
+    }
+    @Path("/updateUser")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public boolean updateUser(UpdateRequest updateRequest){
+        System.out.println(updateRequest.getEmail()+" new pass : "+updateRequest.getUser().getEmail());
+        return userServices.updateUser(updateRequest.getUser(),updateRequest.getEmail());
     }
 }
