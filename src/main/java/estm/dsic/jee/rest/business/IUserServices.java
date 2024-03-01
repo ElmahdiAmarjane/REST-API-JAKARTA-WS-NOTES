@@ -7,5 +7,5 @@ public interface IUserServices {
     User auth(User user);
     boolean create(User user);
     boolean validateUser(boolean validate,User user);
-
+    boolean deleteUser(User user);
 }

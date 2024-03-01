@@ -20,8 +20,15 @@ public class AdminController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean validateUser(User user) {
-
         // Call your service method with the received values
         return userServices.validateUser(true, user);
+    }
+    
+    @Path("/deleteUser")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public boolean deleteUser(User user){
+        return userServices.deleteUser(user);
     }
 }
