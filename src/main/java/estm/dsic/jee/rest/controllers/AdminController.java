@@ -1,10 +1,13 @@
 package estm.dsic.jee.rest.controllers;
 
+import java.util.List;
+
 import estm.dsic.jee.rest.business.IUserServices;
 import estm.dsic.jee.rest.models.UpdateRequest;
 import estm.dsic.jee.rest.models.User;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -39,5 +42,13 @@ public class AdminController {
     public boolean updateUser(UpdateRequest updateRequest){
         System.out.println(updateRequest.getEmail()+" new pass : "+updateRequest.getUser().getEmail());
         return userServices.updateUser(updateRequest.getUser(),updateRequest.getEmail());
+    }
+
+    @Path("/allUsers")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    
+    public List<User> getAllUsers(UpdateRequest updateRequest){
+        return userServices.getAllUsers();
     }
 }

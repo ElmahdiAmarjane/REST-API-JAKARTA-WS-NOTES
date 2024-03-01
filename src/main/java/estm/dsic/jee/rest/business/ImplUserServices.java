@@ -1,6 +1,7 @@
 package estm.dsic.jee.rest.business;
 
 import java.io.Serializable;
+import java.util.List;
 
 import estm.dsic.jee.rest.dal.UserDao;
 import estm.dsic.jee.rest.models.User;
@@ -38,5 +39,10 @@ public class ImplUserServices implements IUserServices, Serializable {
     @Override
     public boolean updateUser(User user, String email) {
            return userDao.update(user, email);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userDao.getAll();
     }
 }

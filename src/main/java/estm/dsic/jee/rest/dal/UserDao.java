@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -119,6 +121,28 @@ public class UserDao implements Repository<User,String> {
         }
 
         return false;
+    }
+
+    @Override
+    public List<User> getAll() {
+           String query = "SELECT * FROM users";
+          try(Connection connection = dataSource.getConnection()) {
+           PreparedStatement preparedStatement= connection.prepareStatement(query);
+          ResultSet rs = preparedStatement.executeQuery();
+            List<User> users = new ArrayList<>();
+            while(rs.next()){
+              User user = new User();
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setVerify(rs.getBoolean("isverify"));
+                user.setAdmin(rs.getBoolean("isAdmin"));
+                users.add(user);
+            }
+            return users;
+          } catch (Exception e) {
+             System.out.println(e);
+          }
+          return null;
     }
     
         
