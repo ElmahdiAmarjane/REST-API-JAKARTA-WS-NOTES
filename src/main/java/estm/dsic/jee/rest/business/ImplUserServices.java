@@ -24,4 +24,9 @@ public class ImplUserServices implements IUserServices, Serializable {
     public boolean create(User user) {
         return userDao.create(user);
     }
+
+    @Override
+    public boolean validateUser(boolean validate,User user) {
+        return userDao.validateUser(validate,user.getEmail());
+    }
 }

@@ -85,6 +85,23 @@ public class UserDao implements Repository<User,String> {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
+
+    
+    public boolean validateUser(boolean validate,String email) {
+          String query = "UPDATE USERS SET isverify=? where email=?";
+        try(Connection connection = dataSource.getConnection()) {
+            PreparedStatement preparedStatement=connection.prepareStatement(query);
+          preparedStatement.setBoolean(1, validate);
+          preparedStatement.setString(2, email);
+          preparedStatement.executeUpdate();
+          return true;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return false;
+    }
+    
         
 
 }

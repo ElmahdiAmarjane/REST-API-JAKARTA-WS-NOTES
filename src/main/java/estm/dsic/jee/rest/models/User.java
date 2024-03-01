@@ -1,18 +1,21 @@
 package estm.dsic.jee.rest.models;
 
+import jakarta.json.bind.annotation.JsonbProperty;
+
 public class User {
     
     private int id ; 
     private String email;
     private String password;
-    private boolean isAdmin;
+    private Boolean isAdmin;
+    @JsonbProperty("isverify")
     private boolean isVerify;
 
     public boolean getVerify() {
         return isVerify;
     }
-    public void setVerify(boolean isVerify) {
-        this.isVerify = isVerify;
+    public void setVerify(boolean isverify) {
+        this.isVerify = isverify;
     }
     public int getId() {
         return id;

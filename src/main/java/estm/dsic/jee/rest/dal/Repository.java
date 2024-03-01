@@ -9,4 +9,5 @@ public interface Repository<T,I>{
        User find(I index);
        User delete(I index);
        User update(T entity , I index);
+      // boolean validateUser(I index);
 }
