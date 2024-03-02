@@ -1,0 +1,29 @@
+
+-- Create the database
+CREATE DATABASE IF NOT EXISTS db_notes;
+
+-- Switch to the 'db_auth' database
+USE db_notes;
+
+
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    isAdmin BOOLEAN NOT NULL
+);
+
+
+CREATE TABLE notes (
+    id bigint AUTO_INCREMENT PRIMARY KEY,
+    subject VARCHAR(255),
+    body VARCHAR(255),
+    iduser INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (iduser) REFERENCES users(id)
+);
+
+
+INSERT INTO users (email, password, isAdmin)
+VALUES ('user@gmail.com', '123', false);

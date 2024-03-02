@@ -46,7 +46,7 @@ public class UserDao implements Repository<User,String> {
          return false;
     }
   
-    @Override
+    
     public User auth(User entity) {
           String query = "SELECT * FROM users where email = ? AND password = ? ;";
         try (Connection connection = dataSource.getConnection()){
