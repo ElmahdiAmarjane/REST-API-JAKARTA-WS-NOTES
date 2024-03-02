@@ -1,6 +1,6 @@
 package estm.dsic.jee.rest.models;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 
 public class Note {
@@ -11,7 +11,7 @@ public class Note {
      private LocalDateTime created_at ;
      private LocalDateTime updated_at ; 
 
-     
+
      public LocalDateTime getCreated_at() {
         return created_at;
     }

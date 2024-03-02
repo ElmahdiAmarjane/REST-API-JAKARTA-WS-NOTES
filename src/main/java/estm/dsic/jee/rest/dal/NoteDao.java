@@ -40,7 +40,16 @@ public class NoteDao implements Repository<Note,Long> {
 
     @Override
     public boolean delete(Long index) {
-        return true;
+       String query = "DELETE FROM notes where id = ?";
+         try(Connection connection = dataSource.getConnection()) {
+              PreparedStatement preparedStatement=connection.prepareStatement(query);
+               preparedStatement.setLong(1, index);
+               preparedStatement.executeUpdate();
+               return true;
+         } catch (Exception e) {
+          System.out.println(e);
+         }
+        return false;
     }
 
     @Override
