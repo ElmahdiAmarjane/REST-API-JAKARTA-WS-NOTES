@@ -1,8 +1,11 @@
 package estm.dsic.jee.rest.controllers;
 
 
+import java.util.List;
+
 import estm.dsic.jee.rest.business.INoteServices;
 import estm.dsic.jee.rest.models.Note;
+import estm.dsic.jee.rest.models.User;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -36,6 +39,13 @@ public class NotesController {
     @Produces(MediaType.APPLICATION_JSON)
     public boolean update(Note note){
           return noteServices.update(note);
+    }
+    @Path("/allNotes")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Note> getAll(User user){
+          return noteServices.getAll(user.getId());
     }
 
 }

@@ -1,0 +1,7 @@
+ // ADD new note : http://localhost:9080/gnote/api/gnotes/v1/notes/addNote
+{
+    "subject":"second note",
+    "body":"hi im ur second note",
+    "iduser":1
+}
+

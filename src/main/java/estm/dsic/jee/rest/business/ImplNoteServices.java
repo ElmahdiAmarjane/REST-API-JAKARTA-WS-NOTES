@@ -1,6 +1,7 @@
 package estm.dsic.jee.rest.business;
 
 import java.io.Serializable;
+import java.util.List;
 
 import estm.dsic.jee.rest.dal.NoteDao;
 import estm.dsic.jee.rest.models.Note;
@@ -25,5 +26,10 @@ public class ImplNoteServices implements INoteServices,Serializable {
    public boolean update(Note note) {
       return noteDao.updateNote(note);
    }
+   @Override
+   public List<Note> getAll(int iduser) {
+        return noteDao.getAll(iduser);
+   }
+
     
 }

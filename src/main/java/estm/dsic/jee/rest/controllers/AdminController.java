@@ -48,7 +48,7 @@ public class AdminController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     
-    public List<User> getAllUsers(UserUpdateRequest updateRequest){
+    public List<User> getAllUsers(){
         return userServices.getAllUsers();
     }
 }

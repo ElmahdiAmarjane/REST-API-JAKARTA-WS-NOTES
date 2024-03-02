@@ -3,12 +3,15 @@ package estm.dsic.jee.rest.dal;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import estm.dsic.jee.rest.models.Note;
+import estm.dsic.jee.rest.models.User;
 import jakarta.annotation.Resource;
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -68,15 +71,39 @@ public class NoteDao implements Repository<Note,Long> {
        return true;
     }
 
-    @Override
-    public List<Note> getAll() {
-        return null ; 
+    public List<Note> getAll(int iduser) { 
+      String query = "SELECT * FROM notes where iduser= ?";
+         try (Connection connection = dataSource.getConnection()){
+           PreparedStatement preparedStatement = connection.prepareStatement(query);
+           preparedStatement.setInt(1, iduser);
+           ResultSet rs = preparedStatement.executeQuery();
+           List<Note> notes= new ArrayList<>();
+           while(rs.next()){
+               Note note = new Note();
+               note.setId(rs.getLong("id"));
+               note.setSubject(rs.getString("subject"));
+               note.setBody(rs.getString("body"));
+               note.setIduser(rs.getInt("iduser"));
+               notes.add(note);
+              
+           }
+           return notes;
+         } catch (Exception e) {
+          System.out.println(e);
+         }
+         return null;
     }
 
     @Override
     public boolean update(Note entity, Long index) {
       // TODO Auto-generated method stub
       throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+
+    @Override
+    public List<Note> getAll() {
+      // TODO Auto-generated method stub
+      throw new UnsupportedOperationException("Unimplemented method 'getAll'");
     }
     
 }
