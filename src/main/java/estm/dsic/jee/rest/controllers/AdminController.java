@@ -3,7 +3,7 @@ package estm.dsic.jee.rest.controllers;
 import java.util.List;
 
 import estm.dsic.jee.rest.business.IUserServices;
-import estm.dsic.jee.rest.models.UpdateRequest;
+import estm.dsic.jee.rest.models.UserUpdateRequest;
 import estm.dsic.jee.rest.models.User;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -39,7 +39,7 @@ public class AdminController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean updateUser(UpdateRequest updateRequest){
+    public boolean updateUser(UserUpdateRequest updateRequest){
         System.out.println(updateRequest.getEmail()+" new pass : "+updateRequest.getUser().getEmail());
         return userServices.updateUser(updateRequest.getUser(),updateRequest.getEmail());
     }
@@ -48,7 +48,7 @@ public class AdminController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     
-    public List<User> getAllUsers(UpdateRequest updateRequest){
+    public List<User> getAllUsers(UserUpdateRequest updateRequest){
         return userServices.getAllUsers();
     }
 }

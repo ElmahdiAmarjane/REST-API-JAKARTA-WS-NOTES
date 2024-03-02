@@ -52,14 +52,31 @@ public class NoteDao implements Repository<Note,Long> {
         return false;
     }
 
-    @Override
-    public boolean update(Note entity, Long index) {
+    
+    public boolean updateNote(Note entity) {
+         String query = "UPDATE notes SET body = ? , subject = ? where id = ?";
+         try (Connection connection = dataSource.getConnection()){
+             PreparedStatement preparedStatement= connection.prepareStatement(query);
+                 preparedStatement.setString(1, entity.getBody());
+                 preparedStatement.setString(2, entity.getSubject());
+                 preparedStatement.setLong(3, entity.getId());
+                preparedStatement.executeUpdate();
+                return true;
+            } catch (Exception e) {
+          System.out.println(e);
+         }
        return true;
     }
 
     @Override
     public List<Note> getAll() {
         return null ; 
+    }
+
+    @Override
+    public boolean update(Note entity, Long index) {
+      // TODO Auto-generated method stub
+      throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
     
 }

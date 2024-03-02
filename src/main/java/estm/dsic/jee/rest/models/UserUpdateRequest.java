@@ -1,6 +1,6 @@
 package estm.dsic.jee.rest.models;
 
-public class UpdateRequest {
+public class UserUpdateRequest {
        private String email;
        private User user;
     public String getEmail() {

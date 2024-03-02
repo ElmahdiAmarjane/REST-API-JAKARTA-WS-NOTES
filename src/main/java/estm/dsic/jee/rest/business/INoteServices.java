@@ -6,5 +6,6 @@ public interface INoteServices {
 
      boolean create(Note note);
      boolean delete(Long id);
+     boolean update(Note note);
     
 } 
