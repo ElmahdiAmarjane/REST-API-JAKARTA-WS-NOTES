@@ -59,6 +59,7 @@ public class UserDao implements Repository<User,String> {
                  user.setEmail(result.getString("email"));
                  user.setVerify(result.getBoolean("isverify"));
                  user.setAdmin(result.getBoolean("isAdmin"));
+                 user.setId(result.getInt("id"));
                  return user;
               } 
         } catch (SQLException e) {
